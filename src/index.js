@@ -1,5 +1,5 @@
 // Once Function
-const once = fn => {
+const once = (fn) => {
   let done = false
   return (...args) => {
     if (!done) {
@@ -7,4 +7,8 @@ const once = fn => {
       fn(...args)
     }
   }
+}
+
+module.exports = {
+  once,
 }
