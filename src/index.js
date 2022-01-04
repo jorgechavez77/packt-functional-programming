@@ -35,8 +35,19 @@ const alternate = (f, g) => {
   }
 }
 
+const thisManyTimes = (f, n) => {
+  let times = n
+  return (...args) => {
+    if (times > 0) {
+      f(...args)
+      times--
+    }
+  }
+}
+
 module.exports = {
   once,
   onceAndAfter,
   alternate,
+  thisManyTimes,
 }

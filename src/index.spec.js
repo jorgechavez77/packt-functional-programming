@@ -1,4 +1,4 @@
-const { once, onceAndAfter, alternate } = require('./index')
+const { once, onceAndAfter, alternate, thisManyTimes } = require('./index')
 
 test('Call function only once', () => {
   const fn = jest.fn()
@@ -25,7 +25,7 @@ test('Call function once to then call a different function', () => {
   expect(g).toHaveBeenCalledTimes(2)
 })
 
-test('', () => {
+test('Alternate functions order after been called', () => {
   const f = jest.fn()
   const g = jest.fn()
 
@@ -42,4 +42,29 @@ test('', () => {
   jest.clearAllMocks()
   alt()
   expect(g).toHaveBeenCalled()
+})
+
+test('Call a function as many times as specified', () => {
+  const f = jest.fn()
+
+  const once = thisManyTimes(f, 1)
+  const twice = thisManyTimes(f, 2)
+  const zero = thisManyTimes(f, 0)
+
+  once()
+  once()
+  once()
+  expect(f).toHaveBeenCalledTimes(1)
+  jest.clearAllMocks()
+
+  twice()
+  twice()
+  twice()
+  expect(f).toHaveBeenCalledTimes(2)
+  jest.clearAllMocks()
+
+  zero()
+  zero()
+  zero()
+  expect(f).not.toHaveBeenCalled()
 })
