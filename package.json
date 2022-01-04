@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/jorgechavez77/packt-functional-programming#readme",
   "devDependencies": {
+    "@types/jest": "^27.4.0",
     "jest": "^27.4.5",
     "prettier": "^2.5.1"
-  }
+  },
+  "dependencies": {}
 }
