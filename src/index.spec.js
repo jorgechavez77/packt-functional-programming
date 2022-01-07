@@ -1,4 +1,10 @@
-const { once, onceAndAfter, alternate, thisManyTimes } = require('./index')
+const {
+  once,
+  onceAndAfter,
+  alternate,
+  thisManyTimes,
+  counter,
+} = require('./index')
 
 test('Call function only once', () => {
   const fn = jest.fn()
@@ -67,4 +73,24 @@ test('Call a function as many times as specified', () => {
   zero()
   zero()
   expect(f).not.toHaveBeenCalled()
+})
+
+test('iife', () => {
+  ;(() => {
+    const ready = () => console.log('ready')
+    const set = () => console.log('set')
+    const go = () => console.log('go')
+
+    ready()
+    set()
+    go()
+  })()
+})
+
+test('counter', () => {
+  const myCounter = counter()
+
+  expect(myCounter()).toEqual(1)
+  expect(myCounter()).toEqual(2)
+  expect(myCounter()).toEqual(3)
 })

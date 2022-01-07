@@ -45,9 +45,20 @@ const thisManyTimes = (f, n) => {
   }
 }
 
+// Immediate Invocation Function Expression (iife)
+
+const counter = () => {
+  let count = 0
+  return () => {
+    count++
+    return count
+  }
+}
+
 module.exports = {
   once,
   onceAndAfter,
   alternate,
   thisManyTimes,
+  counter,
 }
